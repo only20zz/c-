@@ -1,0 +1,32 @@
+int main()
+{
+	int a = 0;
+	int b = 0;
+	int n = 0;
+	int ret = 1;
+	int num = 0;
+	printf("请输入起始阶层");
+		(void)scanf("%d", &a);
+		printf("请输入结尾阶层");
+		(void)scanf("%d", &n);
+		if (a > n)
+		{
+			printf("输入错误，起始位不能大于结尾位");
+			return 0;
+		}
+		
+		b = n;
+		for (n = 1; n <= b; n++)
+		{
+			for (a = 1; a <= n; a++)
+
+			{
+				ret = ret * a;
+			}
+			num = num + ret;
+			ret = 1;
+	     }
+		
+		printf("num=%d\n", num);
+		return 0;
+}
