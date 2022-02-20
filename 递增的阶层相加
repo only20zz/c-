@@ -1,0 +1,27 @@
+////函数递增的阶层区间合
+int ch(int d,int b)
+{	
+	if (b==0)
+		return d;
+	else if (b > 0)
+	{	
+		ch((d *= b), b - 1);		
+	}
+}
+int main()
+{
+	int a = 0;
+	int c = 0;
+	int count = 1;
+	int let = 0;
+	(void)scanf("%d", &a);
+	printf("第二次的值");
+	(void)scanf("%d", &c);
+	while (c >= a)
+	{
+		let+=ch(count, a);
+		a++;
+	}
+	printf("%d\n", let);
+	return 0;
+}
