@@ -13,11 +13,8 @@ int ch(int b)
 	int n = 1;
 	for (int i = b; i >2; i--)
 	{
-		 if (b > 2)
-		{
 			n += d;
 			d = n-d;
-		}
 	}
 	return n;
 }
