@@ -1,0 +1,32 @@
+
+//每天一堆糖，每一天小明会吃掉糖的一半多n个，到第w天的时候小明刚好只剩下一颗糖果，问第一天小明多少个糖
+#include<stdio.h>
+int candies(int n,int w)
+{
+	int let = 2 * (1 + n);
+	if (w == 1)
+	{
+		return 1;
+	}
+	for (; w > 2; w--)
+	{
+		let=(let+n)*2;
+	}
+	return let;
+}
+
+main()
+{
+	int n = 0;
+	int w = 0;             //
+	int m = 0;
+	printf("每天多吃多少个>:");
+	(void)scanf("%d", &n);
+	printf("多少天");
+	(void)scanf("%d", &w);
+	m=candies(n,w);
+	printf("小明第一天有%d个糖果", m);;
+
+
+}
+
