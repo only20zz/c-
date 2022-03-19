@@ -1,0 +1,46 @@
+//小到大排序
+int pd(int lg,int arr[])
+{
+	int count = lg;
+	for (int i = 0; i <= lg; i++)
+	{
+		if (arr[i] <= arr[i + 1])
+		{
+			count--;
+		}
+	}
+	return count;
+}
+int main()
+{
+	int arr1[] = { 920,8,45,697,6,5,4,-3,2,1,45,0,20,65,89,79,79,4646,2,46464,3,46,46966};               //输入需要排列的整数
+	int lg = sizeof(arr1) / sizeof(arr1[0]) - 1;
+	for (int i = 0; i <= lg; i++)
+		printf("%d ", arr1[i]);
+	printf("\n");
+	int b = 0;
+	int c = 0;
+	int d = 0;
+	int e = 0;
+	for (;pd(lg,arr1)>0;)                                          
+	{
+		for (b = 0; b <= lg; b++)
+		{
+			c = arr1[b];
+			d = b;
+			for (; d <= lg; d++)
+			{
+				if (c > arr1[d])
+				{
+					e = arr1[b];
+					arr1[b] = arr1[d];
+					arr1[d] = e;
+					break;
+				}
+			}
+		}
+	}
+	for (int i = 0; i <= lg; i++)
+		printf("%d ", arr1[i]);
+	return 0;
+}
