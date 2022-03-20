@@ -1,0 +1,17 @@
+#include<assert.h>
+ int My_strlen(const char*str)
+{
+	 assert(str!=NULL);
+	if (*str == '\0')
+		return 0;
+	else
+		return My_strlen(++str) + 1;
+
+}
+int main()
+{
+	char arr[] = "dadadafaf";
+	int let = My_strlen(arr);
+	printf("%d", let);
+	return 0;
+}
