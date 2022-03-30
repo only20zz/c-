@@ -1,0 +1,487 @@
+
+#include<stdio.h>
+#include<string.h>
+#include<assert.h>
+//1.streln    2.strcpy 3.strcat 4.strcmp  5.strncpy  6.strncat 7.strncmp 8.strstr 9.strtok 10.strerror 11.memcpy 12.memmove 13.memcmp  
+// 
+////杨辉三角
+//int main()
+//{
+//	int n,i,j,k;
+//	long date[21] = { 0,1};    //存储一行的数据
+//	printf("请输入杨辉三角的行数(1-20行)>;");
+//	(void)scanf("%d",&n);
+//	for (i = 1;i<=n;i++)      //确定多少行
+//	{
+//		for (j=0;j<n-i;j++)              //打印格式
+//		{
+//			printf("   ");
+//		}
+//		int t = 0;
+//		for (j=1;j<=i;j++)    //算出数打印
+//		{
+//			k = date[j];
+//			date[j] = k + t;
+//			t = k;
+//			printf("%6d", date[j]);
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+//
+//1.streln and My_strlen                     求字符串长度函数不包括\0
+//strlen用法
+//int main()
+//{
+//	char arr[] = "xuziyeshidashabi";
+//	printf("%d", strlen(arr));
+//	return 0;
+//}
+// 
+//My_strlen实现       size_t strlen ( const char * str );
+//int My_Strlen(const char* str)
+//{
+//	assert(str);
+//	if (*str =='\0')
+//		return 0;
+//	else
+//		return My_Strlen(++str) + 1;
+//}
+//int main()
+//{
+//	char arr[] = "xuziyeshidashabi";
+//	printf("%d", My_Strlen(arr));
+//	return 0;
+//}
+//
+//2.strcpy and My_strcpy                拷贝函数
+//strcpy用法
+//int main()
+//{   
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[20] = "0";
+//	strcpy(arr2, arr1);
+//	for (int n = 0; n<= sizeof(arr1) / sizeof(arr1[0]) - 1; n++)
+//	{
+//		printf("%c", arr2[n]);
+//	}
+//	return 0;
+//}
+//My_strcpy实现          char* strcpy(char* destination, const char* source);        destination目的地     source来源
+//char* My_Strcpy(char* destination, const char* source)
+//{
+// assert(destination && source);
+//	char* scr = destination;
+//	while (*destination++ =*source++)
+//	     ;
+//	return scr;
+//}
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[20] = "00000000000000000000";
+//	My_Strcpy(arr2, arr1);
+//	for (int n = 0; n <= sizeof(arr1) / sizeof(arr1[0]) - 1; n++)
+//	{
+//		printf("%c", arr2[n]);
+//	}
+//	return 0;
+//}
+//
+//3.strcat and My_Strcat         追加函数  
+//strcat用法
+//int main()
+//{
+//	char arr1[20] = "xuziyeshi";
+//	char arr2[] = "dashabi";
+//	strcat(arr1, arr2);
+//	for (int n = 0; n <= sizeof(arr1) / sizeof(arr1[0]) - 1; n++)
+//	{
+//		printf("%c", arr1[n]);
+//	}
+//	return 0;
+//}
+//
+//My_Strcat实现        char * strcat ( char * destination, const char * source );
+//char* My_Strcat(char* destination, const char* source)
+//{
+//   assert(destination && source);
+//	char* scr = destination;
+//	while (*scr++)
+//		;
+//	while (*scr++ = *source++)
+//		;
+//	return destination;
+//}
+//int main()
+//{
+//	char arr1[20] = "xuziyeshi";
+//	char arr2[] = "dashabi";
+//	My_Strcat(arr1, arr2);
+//	for (int n = 0; n <= sizeof(arr1) / sizeof(arr1[0]) - 1; n++)
+//	{
+//		printf("%c", arr1[n]);
+//	}
+//	return 0;
+//}
+//
+//4.strcmp and My_Strcmp      比较函数
+//strcmp用法
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[] = "liujunfengshidashabi";	                       
+//	printf("%d\n",strcmp(arr1, arr2));     //>0
+//	char arr3[] = "xuziyeshidashabi";
+//	char arr4[] = "xuziyeshidashabi";
+//	printf("%d\n", strcmp(arr3, arr4));     //=0
+//	char arr5[] = "liujunfengshidashabi";
+//	char arr6[] = "xuziyeshidashabi";
+//	printf("%d\n", strcmp(arr5, arr6));     //<0
+//	return 0;
+//}
+//My_Strcmp实现
+//int strcmp ( const char * str1, const char * str2 );
+//方法1
+//int My_Strcmp(const char* str1, const char* str2)
+//{
+//     assert(str1 && str2);
+//	while (*str1 == *str2 && *str1 != '\0' && *str2 != '\0')
+//	{
+//		str1++;
+//		str2++;
+//	}
+//	if (*str1 > *str2)
+// 		return 1;
+//	else if (*str1 == *str2)
+//		return 0;
+//	else
+//		return -1;
+// }
+//方法2
+//int My_Strcmp(const char* str1, const char* str2)
+//{
+//     assert(str1 && str2);
+//	while (*str1 == *str2 && *str1 && *str2)
+//	{
+//		str1++;
+//		str2++;
+//	}
+//	return *str1 - *str2;
+//}
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[] = "liujunfengshidashabi";
+//	printf("%d\n", My_Strcmp(arr1, arr2));     //>0
+//	char arr3[] = "xuziyeshidashabi";
+//	char arr4[] = "xuziyeshidashabi";
+//	printf("%d\n", My_Strcmp(arr3, arr4));     //=0
+//	char arr5[] = "liujunfengshidashabi";
+//	char arr6[] = "xuziyeshidashabi";
+//	printf("%d\n", My_Strcmp(arr5, arr6));     //<0
+//	char arr7[] = "ld";
+//	char arr8[] = "d";
+//	printf("%d\n", My_Strcmp(arr7, arr8));
+//	return 0;
+//}
+//5.strncpy and   My_Strncpy
+//strncpy    用法
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[20] = "0";
+//	strncpy(arr2,arr1,16);
+//	for (int n = 0; n<16; n++)
+//	{
+//		printf("%c", arr2[n]);
+//	}
+//	return 0;
+//}
+//
+//My_Strncpy实现      char* strncpy(char* destination, const char* source, size_t num);
+//char* My_Strncpy(char* destination, const char* source, size_t num)
+//{
+//	assert(destination && source);
+//	
+//	char* scr = destination;
+//	while (num--&& *source)
+//	{
+//		*destination++ = *source++;
+//	}
+//	return scr;
+//}
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[20] = "0";
+//	My_Strncpy(arr2, arr1, 7);
+//	for (int n = 0; n < 20; n++)
+//	{
+//		printf("%c", arr2[n]);
+//	}
+//	return 0;
+//}
+//
+//6.strncat and My_Strncat  
+//int main()
+//{
+//	char arr1[20] = "xuziye";
+//	char arr2[] = "dashabi";
+//	strncat(arr1, arr2, 7);
+//	for (int n = 0; n <20 ; n++)
+//	{
+//		printf("%c", arr1[n]);
+//	}
+//	return 0;
+//}
+//My_Strncat实现     char * strncat ( char * destination, const char * source, size_t num );
+//char*  My_Strncat(char* destination, const char* source, size_t num)
+//{
+//	assert(destination && source);
+//	char* scr = destination;
+//	while(*scr++)
+//		;
+//	while (num-- && (*scr++ = *source++))
+//		;
+//	*scr = '\0';
+//	return destination;
+//}
+//int main()
+//{
+//	char arr1[20] = "xuziye";
+//	char arr2[] = "dashabi";
+//	My_Strncat(arr1, arr2, 7);
+//	for (int n = 0; n < 20; n++)
+//	{
+//		printf("%c", arr1[n]);
+//	}
+//	return 0;
+//}
+//
+//7.strncmp and My_Strncmp
+//strncmp用法
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[] = "liujunfengshidashabi";	                       
+//	printf("%d\n",strncmp(arr1, arr2,17));     //>0
+//	char arr3[] = "xuziyeshidashabi";
+//	char arr4[] = "xuziyeshidashabi";
+//	printf("%d\n", strncmp(arr3, arr4,20));     //=0
+//	char arr5[] = "liujunfengshidashabi";
+//	char arr6[] = "xuziyeshidashabi";
+//	printf("%d\n", strncmp(arr5, arr6,17));     //<0
+//	return 0;
+//}
+//Mystrncmp实现   int strncmp ( const char * str1, const char * str2, size_t num );
+//int My_Strncmp(const char* str1, const char* str2, size_t num)
+//{
+//	assert(str1 && str2);
+//	while (--num && (*str1 == *str2) && *str1 && str2)
+//	{
+//		str1++;
+//		str2++;
+//	}
+//	return *str1 - *str2;
+//}
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[] = "liujunfengshidashabi";
+//	printf("%d\n", My_Strncmp(arr1, arr2, 17));     //>0
+//	char arr3[] = "xuziyeshidashabi";
+//	char arr4[] = "xuziyeshidashabi";
+//	printf("%d\n", My_Strncmp(arr3, arr4, 17));     //=0
+//	char arr5[] = "liujunfengshidashabi";
+//	char arr6[] = "xuziyeshidashabi";
+//	printf("%d\n", My_Strncmp(arr5, arr6, 17));     //<0
+//	return 0;
+//}
+//
+//8.strstr and My_strstr        char * strstr ( const char * str1, const char * str2 );
+//strstr用法
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[] = "dashabi";
+//	char *scr=strstr(arr1,arr2);
+//	while(*scr)
+//	{
+//		printf("%c", *scr++);
+//	}
+//	return 0;
+//}
+//My_strstr实现  
+//char* My_strstr(const char* str1, const char* str2)
+//{
+//	assert(str1 && str2);
+//	while (*str1)
+//	{
+//		char* str = str1++;
+//		char* scr = str2;
+//		while (*str == *scr)
+//		{
+//			if(!*scr)
+//				return --str1;
+//			str++;
+//			scr++;
+//		}
+//	}
+//	return NULL;
+//}
+//int main()
+//{
+//	char arr1[] = "xuziyeshidashabi";
+//	char arr2[] = "dashabi";
+//	char* scr = My_strstr(arr1, arr2);
+//	while (*scr)
+//	{
+//		printf("%c", *scr++);
+//	}
+//	return 0;
+//}
+
+//9.strtok     我现阶段无法做到strtok自我实现
+//strtok用法
+//int main()
+//{
+//    char str[] = "- This, a sample string.";
+//    char* pch;
+//    printf("Splitting string \"%s\" into tokens:\n", str);
+//    pch = strtok(str, " ,.-");
+//    while (pch != NULL)
+//    {
+//        printf("%s\n", pch);
+//        pch = strtok(NULL, " ,.-");
+//    }
+//    return 0;
+//}
+
+//10.strerror   我现阶段无法做到strerror自我实现
+//strerror用法
+//errno是一个全局的错误码变量
+//当c语言的库函数在执行过程中，发生了错误，就会把对应的错误码，赋值到errno中
+//#include <errno.h>
+//int main()
+//{
+//    FILE* pFile;
+//    pFile = fopen("unexist.ent", "r");
+//    if (pFile == NULL)
+//        printf("Error opening file unexist.ent: %s\n", strerror(errno));
+//    return 0;
+//}
+
+//11.memcpy  and My_Memcpy
+//memcpy用法
+/* memcpy example */
+//struct {
+//	char name[40];
+//	int age;
+//} person, person_copy;
+//int main()
+//{
+//	char myname[] = "Pierre de Fermat";
+//	memcpy(person.name, myname, strlen(myname) + 1);
+//	person.age = 46;
+//	memcpy(&person_copy, &person, sizeof(person));
+//	printf("person_copy: %s, %d \n", person_copy.name, person_copy.age);
+//	return 0;
+//}
+//My_Memcpy实现                    void* memcpy(void* destination, const void* source, size_t num);
+//void* My_Memcpy(void* destination, const void* source, size_t num)
+//{
+//	assert(destination && source);
+//	void* scr = destination;
+//	while (num--)
+//	{
+//		*((char*)destination)++ = *((char*)source)++;
+//	}
+//	return scr;
+//}
+//struct {
+//	char name[40];
+//	int age;
+//} person, person_copy;
+//int main()
+//{
+//	char myname[] = "Pierre de Fermat";
+//	My_Memcpy(person.name, myname, strlen(myname) + 1);
+//	person.age = 46;
+//	My_Memcpy(&person_copy, &person, sizeof(person));
+//	printf("person_copy: %s, %d \n", person_copy.name, person_copy.age);
+//	return 0;
+//}
+
+
+
+//12.memmove and My_Memmove
+//memmove用法
+//int main()
+//{
+//	char str[] = "memmove can be very useful......";
+//	memmove(str + 20, str + 15, 11);
+//	puts(str);
+//	return 0;
+//}
+
+//void* My_Memmove(void* destination, const void* source, size_t num)
+//{
+//	void* scr = destination;
+//	if ( destination< source||destination > (char*)source + num  )     //顺序拷贝
+//	{
+//		while (num--)
+//		{
+//			*((char*)destination)++ = *((char*)source)++;
+//		}
+//	}
+//	else                //逆序拷贝
+//	{
+//		while (num--)
+//		{
+//			*((char*)destination+num) = *((char*)source+num);
+//		}
+//	}
+//	return scr;
+//}
+//struct {
+//	char name[40];
+//	int age;
+//} person, person_copy;
+//int main()
+//{
+//	char myname[] = "Pierre de Fermat";
+//	My_Memmove(person.name, myname, strlen(myname) + 1);
+//	person.age = 46;
+//	My_Memmove(&person_copy, &person, sizeof(person));
+//	printf("person_copy: %s, %d \n", person_copy.name, person_copy.age);
+//	char str[] = "memmove can be very useful......";
+//	My_Memmove(str + 20, str + 15, 11);
+//	puts(str);
+//	return 0;
+//}
+
+//13.memcmp             比较
+/* memcmp example */
+//int main()
+//{
+//	char buffer1[] = "DWgaOtP12df0";
+//	char buffer2[] = "DWGAOTP12DF0";
+//	int n;
+//	n = memcmp(buffer1, buffer2, sizeof(buffer1));
+//	if (n > 0) printf("'%s' is greater than '%s'.\n", buffer1, buffer2);
+//	else if (n < 0) printf("'%s' is less than '%s'.\n", buffer1, buffer2);
+//	else printf("'%s' is the same as '%s'.\n", buffer1, buffer2);
+//	return 0;
+//}
+
+//memset      void * memset ( void * ptr, int value, size_t num );      
+// 将 ptr 指向的内存块的第一个 num 字节设置为指定的值(解释为无符号字符)。
+//int main()
+//{
+//	char str[] = "almost every programmer should know memset!";
+//	memset(str, '-', 6);
+//	puts(str);
+//	return 0;
+//}
